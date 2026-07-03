@@ -1,0 +1,3 @@
+# Accessibility inference. Model weights are downloaded separately on first use.
+openai-whisper>=20240930
+imageio-ffmpeg>=0.5,<1.0

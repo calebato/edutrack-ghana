@@ -1,0 +1,8 @@
+# Install only after a consented, transcribed Ghanaian-accent dataset exists.
+transformers>=4.45,<5.0
+datasets>=3.0,<5.0
+evaluate>=0.4,<1.0
+accelerate>=1.0,<2.0
+jiwer>=3.0,<5.0
+librosa>=0.10,<1.0
+soundfile>=0.12,<1.0

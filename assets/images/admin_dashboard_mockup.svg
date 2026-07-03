@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <style>
+    .bg { fill: #f4f7fb }
+    .sidebar { fill: #4f46e5 }
+    .card { fill: #fff; stroke: #e6e9f2; stroke-width:1; rx:12 }
+    .muted { fill: #6b7280; font-family: "Poppins", sans-serif }
+    .title { fill: #111827; font-family: "Syne", sans-serif }
+    .btn { fill: #4f46e5; rx:8 }
+    .btn-text { fill: #fff; font-weight:700 }
+  </style>
+
+  <rect class="bg" x="0" y="0" width="1200" height="700"/>
+
+  <!-- Sidebar -->
+  <rect class="sidebar" x="20" y="20" width="220" height="660" rx="14"/>
+  <text x="130" y="70" font-size="20" text-anchor="middle" fill="#fff" font-weight="800">🛠 Admin</text>
+  <g fill="#fff" font-family="Poppins, sans-serif" font-size="14">
+    <text x="50" y="120">📊 Dashboard</text>
+    <text x="50" y="150">👨‍🎓 Students</text>
+    <text x="50" y="180">👩‍🏫 Teachers</text>
+    <text x="50" y="210">📚 Subjects</text>
+    <text x="50" y="240">🚨 Violations</text>
+    <text x="50" y="270">📢 Announcements</text>
+    <text x="50" y="300">📜 Logs</text>
+  </g>
+
+  <!-- Header -->
+  <rect x="260" y="20" width="920" height="80" fill="#fff" rx="10" stroke="#e6e9f2"/>
+  <text x="300" y="70" class="title" font-size="22">Welcome, <tspan fill="#4f46e5" font-weight="700">Admin Name</tspan></text>
+  <rect x="1040" y="40" width="120" height="38" class="btn"/>
+  <text x="1100" y="66" class="btn-text" font-size="14" text-anchor="middle">Logout</text>
+
+  <!-- Stat cards -->
+  <g transform="translate(260,120)">
+    <rect class="card" x="0" y="0" width="250" height="120"/>
+    <text x="20" y="36" class="muted" font-size="12">Total Students</text>
+    <text x="20" y="78" class="title" font-size="36" font-weight="800">1,234</text>
+
+    <rect class="card" x="280" y="0" width="250" height="120"/>
+    <text x="300" y="36" class="muted" font-size="12">Total Teachers</text>
+    <text x="300" y="78" class="title" font-size="36" font-weight="800">56</text>
+
+    <rect class="card" x="560" y="0" width="250" height="120"/>
+    <text x="580" y="36" class="muted" font-size="12">Total Quizzes</text>
+    <text x="580" y="78" class="title" font-size="36" font-weight="800">89</text>
+
+    <rect class="card" x="840" y="0" width="250" height="120"/>
+    <text x="860" y="36" class="muted" font-size="12">Violations</text>
+    <text x="860" y="78" class="title" font-size="36" font-weight="800">12</text>
+  </g>
+
+  <!-- Quick actions -->
+  <text x="280" y="280" class="muted" font-size="16">Quick Actions</text>
+  <g transform="translate(260,300)">
+    <rect x="0" y="0" width="160" height="42" rx="8" fill="#4f46e5"/>
+    <text x="80" y="28" class="btn-text" font-size="14" text-anchor="middle">Manage Students</text>
+
+    <rect x="190" y="0" width="160" height="42" rx="8" fill="#10b981"/>
+    <text x="270" y="28" fill="#fff" font-weight="700" font-size="14" text-anchor="middle">Manage Teachers</text>
+
+    <rect x="380" y="0" width="160" height="42" rx="8" fill="#f59e0b"/>
+    <text x="460" y="28" fill="#fff" font-weight="700" font-size="14" text-anchor="middle">View Violations</text>
+
+    <rect x="570" y="0" width="160" height="42" rx="8" fill="#374151"/>
+    <text x="650" y="28" fill="#fff" font-weight="700" font-size="14" text-anchor="middle">Manage Subjects</text>
+  </g>
+
+  <!-- Activity panel -->
+  <rect x="260" y="360" width="680" height="300" class="card"/>
+  <text x="280" y="390" class="muted" font-size="14">Recent Activity</text>
+  <line x1="280" y1="410" x2="900" y2="410" stroke="#eef2ff" stroke-width="1"/>
+  <g fill="#374151" font-size="13" font-family="Poppins, sans-serif">
+    <text x="280" y="440">• Student A submitted Quiz 5</text>
+    <text x="280" y="470">• Teacher B created a new assignment</text>
+    <text x="280" y="500">• Violation report #123 reviewed</text>
+  </g>
+
+  <!-- Sidebar small logo -->
+  <circle cx="110" cy="94" r="28" fill="#fff"/>
+  <text x="110" y="102" font-size="18" text-anchor="middle">🎓</text>
+
+</svg>

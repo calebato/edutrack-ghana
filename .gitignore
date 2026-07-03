@@ -1,0 +1,16 @@
+/config/.env
+/edutrack_ghana.sql
+*.sql
+!/database/migrations/*.sql
+.DS_Store
+Thumbs.db
+/ml/training_data.json
+/ml/advanced_training_data.json
+/ml/.venv/
+__pycache__/
+*.pyc
+/ml/vendor/
+/ml/bin/
+/ml/models/**/*.pt
+/ml/models/**/*.pth
+/ml/models/**/*.onnx

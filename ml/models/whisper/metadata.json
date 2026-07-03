@@ -1,0 +1,11 @@
+{
+  "model_name": "whisper_accessibility",
+  "version": "openai-whisper-20250625-base",
+  "algorithm": "multilingual_transformer_speech_recognition",
+  "base_model": "base",
+  "fine_tuned": false,
+  "training_samples": 0,
+  "status": "pretrained_baseline",
+  "limitations": "Not fine-tuned for Ghanaian accents; requires consented transcribed audio and speaker-separated evaluation.",
+  "installed_at": "2026-06-20T20:28:02.508013+00:00"
+}
