@@ -3,6 +3,14 @@
 *.sql
 !/database/migrations/*.sql
 /auth/hash.php
+/localize_french_curriculum.php
+/localize_twi_curriculum.php
+/seed_full_jhs_curriculum.php
+/database/seed_cross_subject_student_usage.php
+/database/seed_defense_demo_data.php
+/database/seed_ezra_demo_data.php
+/database/seed_realistic_school_usage.php
+/database/update_student_streaks.php
 /docs/project_work_extracted.txt
 /docs/*.inspect.ndjson
 /docs/*Template_Format.pptx
