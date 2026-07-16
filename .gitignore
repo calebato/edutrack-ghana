@@ -2,6 +2,11 @@
 /edutrack_ghana.sql
 *.sql
 !/database/migrations/*.sql
+/auth/hash.php
+/docs/project_work_extracted.txt
+/docs/*.inspect.ndjson
+/docs/*Template_Format.pptx
+/docs/template_format_preview/
 .DS_Store
 Thumbs.db
 /ml/training_data.json
