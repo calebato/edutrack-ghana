@@ -11,6 +11,7 @@
 /database/seed_ezra_demo_data.php
 /database/seed_realistic_school_usage.php
 /database/update_student_streaks.php
+/docs/
 /docs/project_work_extracted.txt
 /docs/*.inspect.ndjson
 /docs/*Template_Format.pptx
