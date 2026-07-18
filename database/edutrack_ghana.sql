@@ -165,6 +165,7 @@ CREATE TABLE `questions` (
   `explanation` text DEFAULT NULL,
   `points` int(11) DEFAULT 10,
   `difficulty` enum('easy','medium','hard') DEFAULT 'easy',
+  `bloom_level` enum('remember','understand','apply','analyze','evaluate','create') NOT NULL DEFAULT 'understand',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `fk_question_quiz` (`quiz_id`),
@@ -185,6 +186,7 @@ CREATE TABLE `quiz_attempts` (
   `passed` tinyint(1) DEFAULT 0,
   `attempt_number` int(11) DEFAULT 1,
   `answers_json` longtext DEFAULT NULL,
+  `question_ids_json` longtext DEFAULT NULL,
   `started_at` datetime DEFAULT NULL,
   `completed_at` datetime DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -635,6 +637,14 @@ INSERT INTO `topics` (`id`, `subject_id`, `school_id`, `created_by_teacher_id`, 
 
 /*!40000 ALTER TABLE `violation_reports` DISABLE KEYS */;
 /*!40000 ALTER TABLE `violation_reports` ENABLE KEYS */;
+
+-- Seed Bloom levels used by adaptive question selection.
+UPDATE `questions`
+SET `bloom_level` = CASE `difficulty`
+  WHEN 'hard' THEN 'analyze'
+  WHEN 'medium' THEN 'apply'
+  ELSE 'understand'
+END;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

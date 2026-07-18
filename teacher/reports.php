@@ -114,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_report']) && $re
         $smtpUser = reportConfig('EDUTRACK_SMTP_USER');
         $smtpPass = reportConfig('EDUTRACK_SMTP_PASS');
         $smtpPort = (int)(reportConfig('EDUTRACK_SMTP_PORT') ?: 587);
+        $smtpEncryption = strtolower(reportConfig('EDUTRACK_SMTP_ENCRYPTION') ?: 'tls');
         if ($smtpHost === '' || $smtpUser === '' || $smtpPass === '') {
             throw new RuntimeException('SMTP is not configured.');
         }
@@ -125,7 +126,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_report']) && $re
 
         $mail->Password = $smtpPass;
 
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->SMTPSecure = $smtpEncryption === 'smtps'
+            ? PHPMailer::ENCRYPTION_SMTPS
+            : PHPMailer::ENCRYPTION_STARTTLS;
 
         $mail->Port = $smtpPort;
 
@@ -387,7 +390,8 @@ require_once __DIR__ . '/../includes/header.php';
         🖨 Print Report
     </button>
 
-    <?php if ($isGeneralTeacher && !empty($reportStudent['parent_email'])): ?>
+    <?php if ($isGeneralTeacher): ?>
+        <?php if (!empty($reportStudent['parent_email'])): ?>
 
         <form method="post" onsubmit="return confirm('Send this report to the parent email address?')">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRF()) ?>">
@@ -402,7 +406,11 @@ require_once __DIR__ . '/../includes/header.php';
             📧 Send to Parent
         </a>
 
-    <?php elseif (!$isGeneralTeacher): ?>
+        <?php else: ?>
+            <button type="button" class="btn btn-sm btn-primary" disabled title="Add a parent email to the student's profile before sending">Send to Parent</button>
+            <span class="small text-warning align-self-center">Parent email required</span>
+        <?php endif; ?>
+    <?php else: ?>
         <span class="badge bg-light text-muted align-self-center">Subject report only</span>
     <?php endif; ?>
 
@@ -758,6 +766,13 @@ require_once __DIR__ . '/../includes/header.php';
                         <div class="user-avatar-sm"><?= strtoupper(substr($s['full_name'], 0, 1)) ?></div>
                         <div>
                             <div class="fw-600"><?= htmlspecialchars($s['full_name']) ?></div>
+                            <?php if ($isGeneralTeacher && !empty($s['parent_email'])): ?>
+                                <a href="?student=<?= (int)$s['id'] ?>" class="btn btn-sm btn-primary mt-2" onclick="event.stopPropagation()">Open &amp; Send Report</a>
+                            <?php elseif ($isGeneralTeacher): ?>
+                                <span class="badge bg-light text-muted mt-2">Parent email required</span>
+                            <?php else: ?>
+                                <a href="?student=<?= (int)$s['id'] ?>" class="btn btn-sm btn-outline-primary mt-2" onclick="event.stopPropagation()">Open Report</a>
+                            <?php endif; ?>
                             <div class="text-muted small"><?= $s['class_level'] ?> • <?= $s['quiz_count'] ?> quizzes</div>
                         </div>
                     </div>
