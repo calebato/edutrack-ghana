@@ -95,7 +95,7 @@ Quiz attempts are tied to the authenticated student and store the exact selected
 
 After submission, EduTrack records the score, updates topic mastery, awards session points, checks badges, prevents duplicate rewards, and refreshes the learner's ML outputs. Streaks, rewards, and confetti provide the engagement layer.
 
-The exam-performance model is trained offline from chronological learning records and exported as a versioned JSON artifact. A localhost Flask service provides real-time learner profiling, prediction, and recommendation ranking through the authenticated PHP bridge. PHP retains direct artifact inference as an availability fallback. Forecasts require at least three completed quizzes and include confidence, risk, model version, explainable factors, and inference source.
+The exam-performance model is trained offline from chronological learning records and exported as a versioned JSON artifact. A localhost Flask service provides real-time learner profiling, prediction, and recommendation ranking through the authenticated PHP bridge. PHP retains direct artifact inference as an availability fallback. Forecasts require at least five completed quizzes and include confidence, risk, model version, explainable factors, and inference source.
 
 Teacher analytics, printable reports, and parent emails include forecasts only when enough evidence exists. See `ml/README.md` for retraining commands, limitations, and safeguards.
 
