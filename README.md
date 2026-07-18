@@ -47,9 +47,11 @@ If a Codespace was created before this configuration was added, run
 changed SQL file after MariaDB has already initialized its persistent volume,
 delete and recreate the Codespace.
 
-## Assessment accounts
+## Evaluation credentials
 
-All assessment accounts use the password `EduTrack123!`.
+The following preconfigured accounts allow assessors to evaluate every role
+without completing registration first. All three use the password
+`EduTrack123!`.
 
 | Role | Email |
 | --- | --- |
@@ -57,9 +59,18 @@ All assessment accounts use the password `EduTrack123!`.
 | Teacher | `teacher1@edutrack.test` |
 | Administrator | `admin@edutrack.test` |
 
-The seed contains anonymized learner profiles and realistic curriculum,
+Students may also create accounts through the registration page. New teacher
+registrations remain inactive until an administrator approves them, and the
+application does not provide public administrator registration.
+
+The database contains anonymized learner profiles and realistic curriculum,
 progress, quiz, badge, and analytics data. It contains no real names, contact
 details, parent information, login logs, IP addresses, or private reports.
+
+> **Production security:** Remove or replace these published evaluation
+> credentials before deploying EduTrack publicly. A public deployment should
+> also configure email verification, registration rate limits, CAPTCHA or an
+> equivalent anti-abuse control, HTTPS, and environment-specific secrets.
 
 Production deployments should use environment-specific credentials, HTTPS, restricted error output, and a supported web-server configuration.
 
