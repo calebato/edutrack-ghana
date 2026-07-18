@@ -665,24 +665,25 @@ a:hover { color: var(--secondary); }
 /* Badges */
 .badges-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
 }
 .badge-card {
   text-align: center;
-  padding: 16px 10px;
+  padding: 20px 14px;
   border: 2px solid var(--border);
   border-radius: 12px;
   transition: all .2s;
 }
 .badge-card.earned { border-color: #FFD700; background: #FFFBEB; }
-.badge-card.locked { opacity: 0.6; }
+.badge-card.locked { opacity: 0.82; }
 .badge-card:hover  { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-.badge-icon-lg { font-size: 32px; margin-bottom: 8px; }
-.badge-name-lg { font-weight: 800; font-size: 13px; margin-bottom: 4px; }
-.badge-desc    { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
-.badge-date    { font-size: 10px; }
-.badge-reward  { font-size: 11px; }
+.badge-icon-lg { font-size: 38px; margin-bottom: 10px; }
+.badge-name-lg { font-weight: 800; font-size: 18px; line-height: 1.3; margin-bottom: 7px; }
+.badge-desc    { font-size: 14px; line-height: 1.5; color: var(--text-muted); margin-bottom: 9px; }
+.badge-date    { font-size: 13px !important; line-height: 1.4; }
+.badge-reward  { font-size: 14px !important; font-weight: 700; margin-bottom: 6px; }
+.badge-card > .badge { font-size: 13px; padding: 6px 10px; }
 
 .badge-earned-card { text-align: center; padding: 12px; }
 .badge-pill {
