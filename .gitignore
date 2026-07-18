@@ -1,0 +1,20 @@
+# Local configuration and secrets
+config/.env
+.env
+
+# Real/private database exports (repository-safe SQL belongs in database/)
+/*.sql
+*.bak
+
+# Local runtime files
+*.log
+__pycache__/
+*.pyc
+.venv/
+ml/logs/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

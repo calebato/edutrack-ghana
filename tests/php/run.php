@@ -34,14 +34,17 @@ check(generateCSRF() === $token, 'The CSRF token should remain stable within a s
 $mlModel = loadExamPredictionModel();
 check($mlModel === null || !empty($mlModel['weights']), 'The exam model should be either genuinely trained or explicitly unavailable.');
 check(scoreToBeceGrade(91) === '1' && scoreToBeceGrade(34) === '9', 'Predicted scores should map to BECE grades correctly.');
-$newLearnerPrediction = predictStudentExamPerformance(3, false);
+$newLearnerPrediction = predictStudentExamPerformance(999999, false);
 check(!$newLearnerPrediction['available'] && $newLearnerPrediction['risk_level'] === 'insufficient_data', 'Learners without enough quizzes must not receive a failing prediction.');
-$experiencedLearnerPrediction = predictStudentExamPerformance(8, false);
+$experiencedStudentId = (int)(dbValue(
+    'SELECT student_id FROM quiz_attempts WHERE completed_at IS NOT NULL GROUP BY student_id HAVING COUNT(*) >= 3 ORDER BY COUNT(*) DESC LIMIT 1'
+) ?: 999999);
+$experiencedLearnerPrediction = predictStudentExamPerformance($experiencedStudentId, false);
 check(
     !$experiencedLearnerPrediction['available'] || ($experiencedLearnerPrediction['score'] >= 0 && $experiencedLearnerPrediction['score'] <= 100),
     'Any available ML prediction should remain bounded.'
 );
-$mlRecommendations = generateMLRecommendations(8, 3);
+$mlRecommendations = generateMLRecommendations($experiencedStudentId, 3);
 check(count($mlRecommendations) <= 3 && (!$mlRecommendations || isset($mlRecommendations[0]['model_version'])), 'The ML recommender should return a bounded, versioned sequence.');
 $defaultGoal = getStudentLearningGoal(999999);
 check($defaultGoal['target_mastery'] === 70, 'Students without a saved learning goal should receive the 70 percent default.');

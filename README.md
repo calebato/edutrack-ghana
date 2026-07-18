@@ -13,10 +13,37 @@ EduTrack is a PHP and MySQL learning platform for Ghanaian junior high schools. 
 
 1. Place the project at `C:\xampp\htdocs\edutrack`.
 2. Create a database named `edutrack_ghana`.
-3. Import `edutrack_ghana.sql`.
-4. Apply `database/migrations/20260620_restore_ml.sql` to an existing database.
-5. Review database settings in `config/db.php`.
-6. Start Apache and MySQL, then open `http://localhost/edutrack`.
+3. Import `database/edutrack_demo.sql`.
+4. Review database settings in `config/db.php`.
+5. Start Apache and MySQL, then open `http://localhost/edutrack`.
+
+From the XAMPP shell, the database can be prepared with:
+
+```powershell
+C:\xampp\mysql\bin\mysql.exe -u root -e "CREATE DATABASE edutrack_ghana CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
+C:\xampp\mysql\bin\mysql.exe -u root edutrack_ghana -e "source C:/xampp/htdocs/edutrack/database/edutrack_demo.sql"
+```
+
+`database/edutrack_demo.sql` is the single assessor-friendly database import.
+It includes the complete current schema and anonymized demonstration data.
+
+The schema already includes the current migrations. When upgrading an older
+EduTrack database instead, apply the SQL files in `database/migrations/` in
+filename order.
+
+## Demonstration accounts
+
+All demonstration accounts use the password `Demo123!`.
+
+| Role | Email |
+| --- | --- |
+| Student | `student1.demo@edutrack.local` |
+| Teacher | `teacher1.demo@edutrack.local` |
+| Administrator | `admin.demo@edutrack.local` |
+
+The seed contains anonymized learner profiles and realistic curriculum,
+progress, quiz, badge, and analytics data. It contains no real names, contact
+details, parent information, login logs, IP addresses, or private reports.
 
 Production deployments should use environment-specific credentials, HTTPS, restricted error output, and a supported web-server configuration.
 
