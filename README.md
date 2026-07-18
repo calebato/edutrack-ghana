@@ -1,4 +1,4 @@
-# EduTrack Ghana
+﻿# EduTrack Ghana
 
 EduTrack is a PHP and MySQL learning platform for Ghanaian junior high schools. It provides separate student, teacher, and administrator workflows for curriculum delivery, quizzes, progress tracking, communication, and reporting.
 
@@ -13,7 +13,7 @@ EduTrack is a PHP and MySQL learning platform for Ghanaian junior high schools. 
 
 1. Place the project at `C:\xampp\htdocs\edutrack`.
 2. Create a database named `edutrack_ghana`.
-3. Import `database/edutrack_demo.sql`.
+3. Import `database/edutrack_ghana.sql`.
 4. Review database settings in `config/db.php`.
 5. Start Apache and MySQL, then open `http://localhost/edutrack`.
 
@@ -21,25 +21,41 @@ From the XAMPP shell, the database can be prepared with:
 
 ```powershell
 C:\xampp\mysql\bin\mysql.exe -u root -e "CREATE DATABASE edutrack_ghana CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
-C:\xampp\mysql\bin\mysql.exe -u root edutrack_ghana -e "source C:/xampp/htdocs/edutrack/database/edutrack_demo.sql"
+C:\xampp\mysql\bin\mysql.exe -u root edutrack_ghana -e "source C:/xampp/htdocs/edutrack/database/edutrack_ghana.sql"
 ```
 
-`database/edutrack_demo.sql` is the single assessor-friendly database import.
-It includes the complete current schema and anonymized demonstration data.
+`database/edutrack_ghana.sql` is the single assessor-friendly database import.
+It includes the complete current schema and privacy-safe assessment data.
 
 The schema already includes the current migrations. When upgrading an older
 EduTrack database instead, apply the SQL files in `database/migrations/` in
 filename order.
 
-## Demonstration accounts
+### GitHub Codespaces
 
-All demonstration accounts use the password `Demo123!`.
+Open the repository in Codespaces and wait for the development container to
+finish building. The included container configuration automatically:
+
+- starts PHP 8.2 with Apache;
+- starts MariaDB 10.11;
+- creates the `edutrack_ghana` database;
+- imports `database/edutrack_ghana.sql`; and
+- forwards the EduTrack website on port 80.
+
+If a Codespace was created before this configuration was added, run
+**Codespaces: Rebuild Container** from the Command Palette. To re-import a
+changed SQL file after MariaDB has already initialized its persistent volume,
+delete and recreate the Codespace.
+
+## Assessment accounts
+
+All assessment accounts use the password `EduTrack123!`.
 
 | Role | Email |
 | --- | --- |
-| Student | `student1.demo@edutrack.local` |
-| Teacher | `teacher1.demo@edutrack.local` |
-| Administrator | `admin.demo@edutrack.local` |
+| Student | `student1@edutrack.test` |
+| Teacher | `teacher1@edutrack.test` |
+| Administrator | `admin@edutrack.test` |
 
 The seed contains anonymized learner profiles and realistic curriculum,
 progress, quiz, badge, and analytics data. It contains no real names, contact
@@ -92,3 +108,4 @@ The checks cover email, password, phone-number, CSRF, roles, model loading, BECE
 ## Repository hygiene
 
 Local environments, caches, and service logs are excluded through `.gitignore`. Database exports must not contain real student, parent, or staff information before they are shared.
+

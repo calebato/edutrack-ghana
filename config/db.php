@@ -6,17 +6,25 @@
 
 date_default_timezone_set('Africa/Accra');
 
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'edutrack_ghana');
-define('DB_CHARSET', 'utf8mb4');
+define('DB_HOST', getenv('EDUTRACK_DB_HOST') ?: 'localhost');
+define('DB_USER', getenv('EDUTRACK_DB_USER') ?: 'root');
+define('DB_PASS', getenv('EDUTRACK_DB_PASS') !== false ? getenv('EDUTRACK_DB_PASS') : '');
+define('DB_NAME', getenv('EDUTRACK_DB_NAME') ?: 'edutrack_ghana');
+define('DB_CHARSET', getenv('EDUTRACK_DB_CHARSET') ?: 'utf8mb4');
 
 // App settings
 define('APP_NAME', 'EduTrack Ghana');
 define('APP_VERSION', '1.0');
 if (!defined('BASE_URL')) {
-    define('BASE_URL', 'http://localhost/edutrack');
+    $configuredBaseUrl = getenv('EDUTRACK_BASE_URL');
+    if ($configuredBaseUrl) {
+        define('BASE_URL', rtrim($configuredBaseUrl, '/'));
+    } elseif (getenv('CODESPACES') === 'true' && !empty($_SERVER['HTTP_HOST'])) {
+        $forwardedProto = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? 'https';
+        define('BASE_URL', $forwardedProto . '://' . $_SERVER['HTTP_HOST']);
+    } else {
+        define('BASE_URL', 'http://localhost/edutrack');
+    }
 }
 define('SESSION_LIFETIME', 3600); // 1 hour
 

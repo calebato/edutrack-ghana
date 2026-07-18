@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/var/www/html:cached
+    environment:
+      CODESPACES: "true"
+      EDUTRACK_DB_HOST: db
+      EDUTRACK_DB_USER: edutrack
+      EDUTRACK_DB_PASS: edutrack_codespace
+      EDUTRACK_DB_NAME: edutrack_ghana
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_DATABASE: edutrack_ghana
+      MARIADB_USER: edutrack
+      MARIADB_PASSWORD: edutrack_codespace
+      MARIADB_ROOT_PASSWORD: edutrack_root_codespace
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ../database/edutrack_ghana.sql:/docker-entrypoint-initdb.d/01-edutrack.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mariadb-data:
